@@ -29,16 +29,6 @@ RUN apt-get -y update \
     unzip \
     && apt-get autoremove \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*/var/tmp/*
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-COPY build/main.sh /
-COPY build/mysql.sh /tmp/
-COPY build/phpinfo.php /var/www/html/
-
-RUN  mkdir -p /var/lock/apache2 /var/run/apache2 \
-     && /tmp/mysql.sh \
-     && rm -rf /tmp/*
-
-EXPOSE 80 443
-
-CMD ["/main.sh"]
+COPY build/apache2.conf /etc/apache2/
