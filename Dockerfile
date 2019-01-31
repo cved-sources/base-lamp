@@ -32,11 +32,11 @@ RUN apt-get -y update \
     && rm -rf /var/lib/apt/lists/*/var/tmp/*
 
 COPY build/main.sh /
-COPY build/set-mysql.sh /tmp/
+COPY build/mysql.sh /tmp/
 COPY build/phpinfo.php /var/www/html/
 
 RUN  mkdir -p /var/lock/apache2 /var/run/apache2 \
-     && /tmp/set-mysql.sh \
+     && /tmp/mysql.sh \
      && rm -rf /tmp/*
 
 EXPOSE 80 443
