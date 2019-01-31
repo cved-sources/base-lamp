@@ -31,13 +31,9 @@ RUN apt-get -y update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN mkdir -p /var/lock/apache2 /var/run/apache2 
-RUN /etc/init.d/mysql start
-RUN mysqladmin -u root password "root"
-
 COPY build/phpinfo.php /var/www/html/
 COPY build/main.sh /
 
 EXPOSE 80 443
 
-CMD ["/main.sh"]
+CMD ["/main.sh", "default"]
