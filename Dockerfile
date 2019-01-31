@@ -33,7 +33,7 @@ RUN apt-get -y update \
 
 RUN mkdir -p /var/lock/apache2 /var/run/apache2 \
     && /etc/init.d/mysql start \
-    && mysqladmin -u root password "root"
+    && mysqladmin -f -s -u root password "root"
 
 COPY build/phpinfo.php /var/www/html/
 COPY build/main.sh /
