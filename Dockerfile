@@ -20,10 +20,11 @@ RUN apt-get -y update \
     php-memcache \
     php-pspell \
     php-snmp \
-    snmp \
     php-xmlrpc \
-    libapache2-mod-php \
+    php-zip \
     php-cli \
+    libapache2-mod-php \
+    snmp \
     bash-completion \
     vim \
     unzip \
@@ -32,3 +33,8 @@ RUN apt-get -y update \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 COPY build/apache2.conf /etc/apache2/
+#COPY build/main.sh /
+
+#EXPOSE 80
+
+#CMD ["/main.sh"]
